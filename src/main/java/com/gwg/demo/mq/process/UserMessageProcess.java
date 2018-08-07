@@ -17,8 +17,9 @@ public class UserMessageProcess<T> implements MessageProcess<T>{
 	@Override
 	public DetailRes process(T message) {
 		logger.info("process 消息处理：{}", JSON.toJSON(message));
-		//return new DetailRes(false, null);//消费失败返回
-		return new DetailRes(true, null);//消费成功返回
+		//在这里可以将消息进行落地
+		return new DetailRes(true, null);//消费失败返回
+		//return new DetailRes(true, null);//消费成功返回
 
 	}
 }

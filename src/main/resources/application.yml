@@ -8,6 +8,6 @@ server:
 rocketmq:
       namesrvAddr: 10.5.41.64:9876
       consumer:
-          consumerGroup: Push_Consumer
+          consumerGroup: Push_Consumer_Test
       producer: 
           producerGroup: gaoweigang
