@@ -48,13 +48,16 @@ public class RocketMQConfig {
 		return defaultMQProducer;
 	}
 	
-	
 	@Bean 
 	public DefaultMQPushConsumer defaultMQPushConsumer() throws MQClientException{
 		DefaultMQPushConsumer consumer = mqAccessBuilder().defaultMQPushConsumer(consumerGroup, namesrvAddr, "TopicTest", "*", ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
 		consumer.setMessageListener(messageListenerConcurrently());
-		consumer.setConsumeThreadMin(2);//配置最低消费线程数量
-		consumer.setConsumeThreadMax(2);//配置最高消费线程数量
+		/**
+		 * 如何保证顺序消费？ 如果是使用MessageListenerOrderly则自带此实现，
+		 * 如果是使用MessageListenerConcurrently，则需要把线程池改为单线程模式
+		 */
+		consumer.setConsumeThreadMin(1);//配置最低消费线程数量
+		consumer.setConsumeThreadMax(1);//配置最高消费线程数量
 		consumer.start();//启动消费者监听
 		return consumer;
 	}

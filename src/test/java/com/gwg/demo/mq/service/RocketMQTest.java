@@ -53,7 +53,7 @@ public class RocketMQTest {
 			    int index = id / mqs.size();//如果master宕机，会导致写入队列mqs数量上出现变化，就可能导致乱序
 				return mqs.get(index);
 			}
-		   }, orderNo);
+		   }, user.getId());
 	       logger.info("发送响应：MsgId:" + result.getMsgId() + "，发送状态:" + result.getSendStatus());
 	  }
 		
